@@ -7,4 +7,43 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(stats)
+library(janitor)
 ```
+
+### Question 1 Background:
+
+*In a parliamentary system, newly elected members of parliament choose a prime minister and a cabinet ("the government"). Typically the government stays in power for a fixed term; however, a no-confidence vote from the parliament or a decision by the prime minister can lead to early elections. Suppose we want to understand the duration of governments in a parliamentary democracy with five-year terms -- that is, elections must be held at least every five years, but might be held earlier (in the case of a no-confidence vote or a prime ministerial decision to dissolve the government).*
+
+### 1a) If we can measure the government duration in infinitely small units of time (ie, continuously), what is the sample space for this experiment?
+
+The sample space, if continuous, must be greater than 0 (more than no time in office) and less than or equal to five (it can technically last five years). So it would look like: $\Omega = (0, 5]$.
+
+### 1b) The random variable $X(\omega)$ is the amount of time in years or fractions of years) between the last election and the calling of the next election. Suppose we know that $X(\omega)$ has the probability density function:
+
+\begin{equation*}
+f(x)= \begin{cases} kx^3 & 0<x<5\\
+0 & \text{otherwise}
+\end{cases}
+\end{equation*}
+
+### where $k$ is a constant. What is $k$ (hint: remember the rules of pdfs)?
+
+In this case, k = $\frac {1}{125}$. When the highest x-value gets plugged into the equation, the result should be 1. Since 5 is the highest value, we would end up with $k*(5)^3 = 1$. Thus, $k = \frac {1}{5^3}$ or $\frac {1}{125}$. 
+
+### 1c) What is the CDF of X?
+
+We know that the CDF can be defined as $F(x) = \int_{-\infty}^{\infty} f(x) \; dx$. Thus, here we can say that for the first interval we have: 
+
+$\int_{0}^{y} \frac{3}{125}x^2 \; dx$. This is simply the derivative of our initial equation, ($\frac{1}{125}x^3$).
+
+For the remainder, we can say the following:
+
+$F(x) = \int_{-\infty}^{y} 0 \; dx$
+
+Also, we already know that F(5) = 1, so F(x) = 1 for x > 5.
+
+
+
+
