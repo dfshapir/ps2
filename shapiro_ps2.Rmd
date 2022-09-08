@@ -30,13 +30,13 @@ f(x)= \begin{cases} kx^3 & 0<x<5\\
 
 ### where $k$ is a constant. What is $k$ (hint: remember the rules of pdfs)?
 
-In this case, k = $\frac {1}{125}$. When the highest x-value gets plugged into the equation, the result should be 1. Since 5 is the highest value, we would end up with $k*(5)^3 = 1$. Thus, $k = \frac {1}{5^3}$ or $\frac {1}{125}$. 
+In this case, k = $\frac {4}{625}$. When the highest x-value gets plugged into the CDF, the result should be 1. Our integral will thus look like: $\int kx^3 \; dx$. We can integrate that to equal $k\frac{x^4}{4}$. We know that since this has to equal 1 at the highest value (5), we can do $k\frac{5^4}{4} = 1$; $625k = 4$; $k = \frac{4}{625}$.
 
 ### 1c) What is the CDF of X?
 
 We know that the CDF can be defined as $F(x) = \int_{-\infty}^{\infty} f(x) \; dx$. Thus, here we can say that for the first interval we have: 
 
-$\int_{0}^{y} \frac{3}{125}x^2 \; dx$. This is simply the derivative of our initial equation, ($\frac{1}{125}x^3$).
+$\int_{0}^{x} \frac{4}{625}x^3 \; dx$. This equals $\left. \frac{1}{625}x^4 \right|_{0}^{x}$, or just $\frac{1}{625}x^4$.
 
 For the remainder, we can say the following:
 
@@ -44,6 +44,30 @@ $F(x) = \int_{-\infty}^{y} 0 \; dx$
 
 Also, we already know that F(5) = 1, so F(x) = 1 for x > 5.
 
+### 1d) What is the probability that the government remains in power for exactly 3 years? Why?
 
+Well, technically, it should be 0. This is continuous, not discrete, so really the probability of the event happening at one specific point is 0. If we show it mathematically, we would take the integral from value "3" to value "3", which would end up just being 0. 
 
+### 1e) What is the probability that the government remains in power between 2 and 4 years?
 
+Here, we actually need to map from x = 2 to x = 4. So this would look like: 
+
+$\int_{2}^{4} \frac{4}{625}x^3 \; dx$. Then, we get $\frac{1}{625}(4)^4 - \frac{1}{625}(2)^4$. This equates to $\frac{256}{625} - \frac{16}{625}$ = $\frac{240}{625}$ or about 38.4%. 
+
+### 1f) What is the probability that the government remains in power for $<1$ or $>4$ years?
+
+Here, I will do two integrals, one from 0 to 1 and the other from 4 to 5. So: 
+
+$\int_{0}^{1} \frac{4}{625}x^3 \; dx$ and $\int_{4}^{5} \frac{4}{625}x^3 \; dx$. 
+
+For the first integral, from this, we get $\frac{1}{625}(1)^4 - \frac{1}{625}(0)^4$. This equates to $\frac{1}{625} - 0$ = $\frac{1}{625}$ or about .16%.
+
+For the second integral, from this, we get $\frac{1}{625}(5)^4 - \frac{1}{625}(4)^4$. This equates to $1 - \frac{256}{625}$ = $\frac{369}{625}$ or about 59.04%. 
+
+So, in total, we add .16% to 59.04, and we get 59.2%. 
+
+### 1g) Plot the pdf and cdf in ggplot2, with axis labels. Describe, in words, what your findings mean for the survival of parliamentary cabinets.
+
+```{r 1g}
+
+```
