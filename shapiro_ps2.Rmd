@@ -1,0 +1,10 @@
+---
+title: "Problem Set 2"
+author: "Daniel Shapiro"
+date: "9/8/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
