@@ -1,7 +1,6 @@
 ---
 title: "Problem Set 2"
 author: "Daniel Shapiro"
-date: "9/8/2022"
 output: pdf_document
 ---
 
@@ -69,5 +68,28 @@ So, in total, we add .16% to 59.04, and we get 59.2%.
 ### 1g) Plot the pdf and cdf in ggplot2, with axis labels. Describe, in words, what your findings mean for the survival of parliamentary cabinets.
 
 ```{r 1g}
+x <- 0:5
 
+df <- data.frame(x)
+
+# Create function and plot for pdf
+
+pdfplot <- ggplot(df, aes(x)) +
+  stat_function(fun = function (x) (4/625) * x ^ 3) +
+  labs(title = "PDF Plot", 
+       x = "x",
+       y = "f(x)")
+
+pdfplot
+
+# Create function and plot for cdf
+
+cdfplot <- ggplot(df, aes(x))+
+stat_function(fun = function (x) (1/625) * x ^ 4) +
+  labs(title = "CDF Plot",
+       x = "x", 
+       y = "F(x)")
+
+
+cdfplot
 ```
