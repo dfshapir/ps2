@@ -134,9 +134,9 @@ outcomes
 
 ### 2a) Write down a table showing the joint probability mass function for $X$ and $Y$.
 
-Joint probability is calculated with the following equation: P(A and B) = P(A|B)xP(B). We will define A as X, and B as Y, so it will look like P(X|Y)xP(Y). 
+Joint probability is calculated with the following equation: $P(A and B) = P(A|B)*P(B)$. We will define A as X, and B as Y, so it will look like $P(X|Y)*P(Y)$. 
 
-So, there are 3 possibilities for Y: 0, 1, and 2. There are 6 possibilities for X: 0, 1, 2, 3, 4, 5, and 6. Luckily, I made this handy table above with all of the combination, so we can really just look visually to give us a good sense as to all of these values. For P(Y = 0), the probability is 25/36; in 25 of our 36 instances, Y = 0. P(Y = 1) = 10/36 -- only one person chooses "5" in ten instances. Finally, P(Y = 2) =  1/36 -- when both people give 5 dollars. 
+So, there are 3 possibilities for Y: 0, 1, and 2. There are 6 possibilities for X: 0, 1, 2, 3, 4, and 5. Luckily, I made this handy table above with all of the combinations, so we can really just look visually to give us a good sense as to all of these values. For P(Y = 0), the probability is 25/36; in 25 of our 36 instances, Y = 0. P(Y = 1) = 10/36 -- only one person chooses "5" in ten instances. Finally, P(Y = 2) =  1/36 -- when both people give 5 dollars. 
 
 P(A|B) for each value is a bit more complicated. Mainly, the big differences here come when X = 5. Below, in the code, I explain how I came up with my vectors. 
 
@@ -170,8 +170,83 @@ rownames(twoa) <- c("YO", "Y1", "Y2")
 twoa
 ```
 
-### 2b, 2c) What is the marginal probability of Y?
+### 2b, 2c) What is the marginal probability of Y? What is the marginal probability of X?
 
 The marginal probability $P_Y(y)$ can be described as $\sum_xPr(X = x, Y = y)$
 
 The marginal probability $P_X(x)$ can be described as $\sum_yPr(Y = y, X = x)$. 
+
+So we simply need to add across or down for each value of X or Y. First, I add a column to express the marginal probability of Y:
+
+```{r marginal}
+twoa <- twoa %>%
+  rowwise %>%
+  mutate("Xmarginal" = sum(across(X0:X5)))
+```
+
+Next, I create a new vector showing the totals for X and use rbind() to bind it together with the broader dataset.
+
+```{r marginalb}
+
+# Used an extra rep of 1/6 as a placeholder -- will remove at end.
+
+df <- rep(1/6, 7)
+dg <- c("X0", "X1", "X2", "X3", "X4", "X5", "Xmarginal")
+
+data <- data.frame(df, dg) %>%
+  pivot_wider(names_from = dg, values_from = df)
+
+twoupdate <- rbind(twoa, data)
+
+twoupdate <- data.frame(twoupdate)
+
+rownames(twoupdate) <- c("YO", "Y1", "Y2", "Ymarginal")
+
+# As mentioned, I set the bottom right corner to NA. 
+
+twoupdate[4,7] = NA
+```
+
+### 2d) Write down a table showing the joint probability mass function for $X$ and $Z$. 
+
+Here we will perform a similar procedure as in 2a. Joint probability is calculated with the following equation: $P(A and B) = P(A|B)*P(B)$. We will define A as X, and B as Z, so it will look like $P(X|Z)*P(Z)$. 
+
+There are 3 possibilities for Z: 0, 1, and 2. There are 6 possibilities for X: 0, 1, 2, 3, 4, and 5. Going off of the table again, we can just look visually to give us a good sense as to all of these values. For P(Z = 0), the probability is 6/36 or 1/6; in 6 of our 36 instances, Z = 0 (P2 = P1). P(Z = 1) = 15/36 -- P2 > P1 in 15 instances. Finally, P(Z = 2) =  15/36 -- when P1 > P2. 
+
+Calculating P(A|B) (otherwise known as P(X|Z)) will be a bit more difficult; more difficult than 2a. Below, in the code, I explain how I came up with my first vector; the remaining ones follow the same logic but are not explained in detail. 
+
+```{r 2d}
+# First, for P(A = 0|B = 0): There are 6 instances when B = 0. Of those, 
+# one occurs when X = 0. Thus, P(A|B) in this instance = 1/6. 1/6 * 1/6 (P(B = 0))
+# = 1/36. A similar operation is done for when P(A = 0|B = 1).
+# There are 15 instances where B = 1. Of those, five occur when X = 1. Thus, P(A|B)
+# in this instance = 5/15, or 1/3. 1/3 * 15/36 (P(B = 1)) = 5/36. Finally, 
+# there are no instances of Y = 2 where X = 0. So our vector is:
+
+X_0 <- c(1/36, 5/36, 0)
+
+# Apart from Z = 0, Z values differ a fair amount. The next vector will look 
+# like:
+
+X_1 <- c(1/36, 4/36, 1/36)
+
+# And so on:
+
+X_2 <- c(1/36, 3/36, 2/36)
+
+X_3 <- c(1/36, 2/36, 3/36)
+
+X_4 <- c(1/36, 1/36, 4/36)
+
+X_5 <- c(1/36, 0, 5/36)
+
+twod <- data.frame(X_0, X_1, X_2, X_3, X_4, X_5)
+
+rownames(twod) <- c("ZO", "Z1", "Z2")
+
+twod
+```
+
+### 2e) What is the marginal probability mass function for Z?
+
+
