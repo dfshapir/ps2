@@ -170,5 +170,8 @@ rownames(twoa) <- c("YO", "Y1", "Y2")
 twoa
 ```
 
-### 2b) What is the marginal probability of Y?
+### 2b, 2c) What is the marginal probability of Y?
 
+The marginal probability $P_Y(y)$ can be described as $\sum_xPr(X = x, Y = y)$
+
+The marginal probability $P_X(x)$ can be described as $\sum_yPr(Y = y, X = x)$. 
