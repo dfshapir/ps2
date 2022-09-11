@@ -249,4 +249,12 @@ twod
 
 ### 2e) What is the marginal probability mass function for Z?
 
+Going off of the information that we got from 2d, we can add across and get the marginal probability at each value of Z. So:
 
+\begin{equation*}
+p_Z(z)=\begin{cases}
+1/6 & \text{if Z = 0}\\
+15/36 & \text{if Z = 1}\\
+15/36 & \text{if Z = 2}
+\end{cases}
+\end{equation*}
