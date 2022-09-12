@@ -12,7 +12,7 @@ library(stats)
 library(janitor)
 ```
 
-### Question 1 Background:
+### Question 1 Background:^[For code, see my Github at https://github.com/dfshapir/ps2.]
 
 *In a parliamentary system, newly elected members of parliament choose a prime minister and a cabinet ("the government"). Typically the government stays in power for a fixed term; however, a no-confidence vote from the parliament or a decision by the prime minister can lead to early elections. Suppose we want to understand the duration of governments in a parliamentary democracy with five-year terms -- that is, elections must be held at least every five years, but might be held earlier (in the case of a no-confidence vote or a prime ministerial decision to dissolve the government).*
 
