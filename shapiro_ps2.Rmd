@@ -331,7 +331,7 @@ for(i in 1:1000) {
   else{newdata$Y[i] <- 0}
 }
 
-# Now, it's time to define Z. 
+# Now, it's time to define Z. This is a much simpler for loop. 
 
 for(i in 1:1000) {
   if(newdata$p1[i] == newdata$p2[i]) {newdata$Z[i] <- 0}
@@ -343,3 +343,42 @@ for(i in 1:1000) {
 
 
 ### 3a) Replicate the joint probability mass function for $X$ and $Y$ using the table() command in R. How closely do the results align?
+
+```{r 3a}
+prop.table(table(newdata$Y, newdata$X))
+
+# First, printed it for the answer, then saved it so I could use it for later
+
+table <- prop.table(table(newdata$Y, newdata$X))
+```
+
+The results are not identical, but they are quite close to the ones we observed in 2a.
+
+### 3b) Using a for loop, find the marginal probability for $Y$. based on your simulation data.
+
+```{r 3b}
+tabledata <- data.frame(table) %>%
+  pivot_wider(names_from = Var2, values_from = Freq) %>%
+  mutate("Y_Marg" = NA)
+  
+# Above, I put in an empty column "Y_Marg" as NA. This way, I can manage to 
+# do this with a for loop below.I personally would have just preferred the 
+# mutate() command, but this works.
+  
+for(i in 1:nrow(tabledata)) {
+  tabledata$Y_Marg[i] <- sum(tabledata[i,2:7])
+}
+
+tabledata %>%select(Var1, Y_Marg)
+
+```
+
+
+### 3c) Using a for loop, show the conditional probability mass function for $X$ given that $Z=1$.
+
+```{r 3c}
+for(i in 1:1000){
+  
+}
+```
+
