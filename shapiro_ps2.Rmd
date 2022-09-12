@@ -376,9 +376,25 @@ tabledata %>%select(Var1, Y_Marg)
 
 ### 3c) Using a for loop, show the conditional probability mass function for $X$ given that $Z=1$.
 
+We know that the conditional probability mass function in this instance can be defined as:
+
+$P_{X|Z}(x|z) = \frac{P_{Z, X}{(z,x)}}{P_{Z}(z)}$
+
+or
+
+$P_{X|Z}(x|z = 1) = \frac{P_{Z, X}{(z = 1,x)}}{P_{Z}(z = 1)}$
+
+So how do we write this in R? 
+
 ```{r 3c}
-for(i in 1:1000){
-  
-}
+# First, let's create a constant -- the probability that Z = 1. This will be
+# the denominator.
+
+threecdata <- newdata %>%
+  filter(Z == 1)
+
+zprob <- nrow(threecdata)/nrow(newdata)
+
+# Now, for the hard part. 
 ```
 
