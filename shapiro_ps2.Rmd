@@ -6,6 +6,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+set.seed(6800)
 library(tidyverse)
 library(stats)
 library(janitor)
@@ -296,3 +297,49 @@ p_{X|Z}(x|z = 1)=\begin{cases}
 0 & \text{if x = 5}
 \end{cases}
 \end{equation*}
+
+### Question 3 Background:
+
+*Let’s replicate the donation experiment empirically, through sampling. First, create a dataset of trials p1 and
+p2. Then define the variables X, Y , and Z, based on the definitions above.*
+
+```{r sampling}
+p1 <- sample(0:5, size = 1000, replace = TRUE)
+p2 <- sample(0:5, size = 1000, replace = TRUE)
+
+# I didn't set the probability, because all outcomes are equally likely. 
+
+# Next, I create empty vectors for X, Y, and Z. These will all be defined further down.
+
+X <- c(rep(1, 1000))
+Y <- c(rep(1, 1000))
+Z <- c(rep(1, 1000))
+
+newdata <- data.frame(p1, p2, X, Y, Z)
+
+# First, X is set equal to the p1 value.
+
+newdata <- newdata %>%
+  mutate(X = p1) 
+
+# Second, I run a loop first defining where both p1 and p2 are 5 as 2, then where either p1 or p2 are 5 as 1, and otherwise as 0.
+
+for(i in 1:1000) {
+  if(newdata$p1[i] == 5 & newdata$p2[i] == 5) {newdata$Y[i] <- 2}
+  else if(newdata$p1[i] == 5 | newdata$p2[i] == 5) {
+    newdata$Y[i] <- 1}
+  else{newdata$Y[i] <- 0}
+}
+
+# Now, it's time to define Z. 
+
+for(i in 1:1000) {
+  if(newdata$p1[i] == newdata$p2[i]) {newdata$Z[i] <- 0}
+  else if(newdata$p1[i] < newdata$p2[i]) {newdata$Z[i] <- 1}
+  else(newdata$Z[i] <- 2)
+}
+
+```
+
+
+### 3a) Replicate the joint probability mass function for $X$ and $Y$ using the table() command in R. How closely do the results align?
