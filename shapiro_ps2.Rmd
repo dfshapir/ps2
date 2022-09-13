@@ -207,6 +207,10 @@ rownames(twoupdate) <- c("YO", "Y1", "Y2", "Ymarginal")
 # add up to this number.
 
 twoupdate[4,7] = 1
+
+# Now, I print the data frame with both "XMarginal" and "YMarginal". Values can be seen in this table. 
+
+twoupdate
 ```
 
 ### 2d) Write down a table showing the joint probability mass function for $X$ and $Z$. 
