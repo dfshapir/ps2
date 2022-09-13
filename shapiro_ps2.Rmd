@@ -331,7 +331,8 @@ newdata <- data.frame(p1, p2, X, Y, Z)
 newdata <- newdata %>%
   mutate(X = p1) 
 
-# Second, I run a loop first defining where both p1 and p2 are 5 as 2, then where either p1 or p2 are 5 as 1, and otherwise as 0.
+# Second, I run a loop first defining where both p1 and p2 are 5 as 2, then where
+# either p1 or p2 are 5 as 1, and otherwise as 0.
 
 for(i in 1:1000) {
   if(newdata$p1[i] == 5 & newdata$p2[i] == 5) {newdata$Y[i] <- 2}
@@ -356,7 +357,7 @@ for(i in 1:1000) {
 ```{r 3a}
 prop.table(table(newdata$Y, newdata$X))
 
-# First, printed it for the answer, then saved it so I could use it for later
+# First, printed it for the answer, then saved it so I could use it for later.
 
 table <- prop.table(table(newdata$Y, newdata$X))
 ```
@@ -470,7 +471,8 @@ conditional5 <- p5/zprob
 
 check <- conditional0 + conditional1 + conditional2 + conditional3 + conditional4 + conditional5
 
-# Now, we can print the values to get a sense of what they look like. I will use 4 decimal places in the equation.
+# Now, we can print the values to get a sense of what they look like. I will use 
+# 4 decimal places in the equation.
 
 conditional0
 conditional1
