@@ -18,7 +18,7 @@ library(janitor)
 
 ### 1a) If we can measure the government duration in infinitely small units of time (ie, continuously), what is the sample space for this experiment?
 
-The sample space, if continuous, must be greater than 0 (more than no time in office) and less than or equal to five (it can technically last five years). So it would look like: $\Omega = (0, 5]$.
+The sample space, if continuous, must be greater than 0 (more than no time in office) and less than or equal to five (it can technically last five years). So it would look like: $\Omega = [0, 5]$.
 
 ### 1b) The random variable $X(\omega)$ is the amount of time in years or fractions of years) between the last election and the calling of the next election. Suppose we know that $X(\omega)$ has the probability density function:
 
