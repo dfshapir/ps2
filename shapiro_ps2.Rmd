@@ -168,10 +168,13 @@ twoa <- data.frame(X0, X1, X2, X3, X4, X5)
 
 rownames(twoa) <- c("YO", "Y1", "Y2")
 
-twoa
+twoa %>%
+  round(digits = 4)
 ```
 
 ### 2b, 2c) What is the marginal probability of Y? What is the marginal probability of X?
+
+For 2b and 2c, I create the marginal probabilites for both variables and show them as additions to the previous table. 
 
 The marginal probability $P_Y(y)$ can be described as $\sum_xPr(X = x, Y = y)$
 
@@ -210,7 +213,8 @@ twoupdate[4,7] = 1
 
 # Now, I print the data frame with both "XMarginal" and "YMarginal". Values can be seen in this table. 
 
-twoupdate
+twoupdate %>%
+  round(digits = 4)
 ```
 
 ### 2d) Write down a table showing the joint probability mass function for $X$ and $Z$. 
@@ -250,7 +254,8 @@ twod <- data.frame(X_0, X_1, X_2, X_3, X_4, X_5)
 
 rownames(twod) <- c("ZO", "Z1", "Z2")
 
-twod
+twod %>%
+  round(digits = 4)
 ```
 
 ### 2e) What is the marginal probability mass function for Z?
